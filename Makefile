@@ -1,4 +1,4 @@
-# CSE 101 PA 1 Makefile
+# CSE 101 PA 0 Makefile
 #
 # DO NOT MODIFY
 
@@ -9,11 +9,11 @@ HEADERS=$(wildcard *.hpp)
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
 
-TestNeighbors.o: testsrc/TestNeighbors.cpp $(HEADERS)
-	$(CC) -I testsrc/ $(FLAGS) -g -c testsrc/TestNeighbors.cpp
+TestSuccessors.o: testsrc/TestSuccessors.cpp $(HEADERS)
+	$(CC) -I testsrc/ $(FLAGS) -g -c testsrc/TestSuccessors.cpp
 
-TestNeighbors: TestNeighbors.o Neighbors.o
-	$(CC) $(FLAGS) -g -o TestNeighbors.out TestNeighbors.o Neighbors.o
+TestSuccessors: TestSuccessors.o Successors.o
+	$(CC) $(FLAGS) -g -o TestSuccessors.out TestSuccessors.o Successors.o
 
 %.o: %.cpp
 	$(CC) $(FLAGS) -g -c -o $@ $<
