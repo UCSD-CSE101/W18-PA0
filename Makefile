@@ -21,3 +21,7 @@ TestSuccessors: TestSuccessors.o Successors.o
 clean:
 	rm -f *.o
 	rm -f *.out
+
+turnin:
+	tar -cvf PA0.tar *.cpp *.hpp
+	turnin PA0.tar
