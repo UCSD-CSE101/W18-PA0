@@ -2,7 +2,7 @@
 // 
 // CSE 101 Winter 2018, PA 0
 
-#ifndef __SUCESSORS_HPP__
+#ifndef __SUCCESSORS_HPP__
 #define __SUCCESSORS_HPP__
 
 #include "Graph.hpp"
