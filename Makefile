@@ -1,27 +1,29 @@
-# CSE 101 PA 0 Makefile
-#
-# DO NOT MODIFY
+BUILD = build
 
-CC=g++
-FLAGS=-std=c++0x -I./
+CXXFLAGS := -std=c++0x -I. $(CXXFLAGS)
 
-HEADERS=$(wildcard *.hpp)
-SOURCES=$(wildcard *.cpp)
-OBJECTS=$(SOURCES:.cpp=.o)
+TEST_SRCS       = testsrc/TestSuccessors.cpp testsrc/TestGraph.hpp
+SUCCESSORS_SRCS  = Successors.cpp Graph.hpp Successors.hpp
+PA_SRCS        = $(SUCCESSORS_SRCS) $(TEST_SRCS)
 
-TestSuccessors.o: testsrc/TestSuccessors.cpp $(HEADERS)
-	$(CC) -I testsrc/ $(FLAGS) -g -c testsrc/TestSuccessors.cpp
+TestSuccessors: $(BUILD)/TestSuccessors
 
-TestSuccessors: TestSuccessors.o Successors.o
-	$(CC) $(FLAGS) -g -o TestSuccessors.out TestSuccessors.o Successors.o
+$(BUILD)/TestSuccessors : $(BUILD)/TestSuccessors.o $(BUILD)/Successors.o
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
-	$(CC) $(FLAGS) -g -c -o $@ $<
+$(BUILD)/TestSuccessors.o : $(TEST_SRCS) | $(BUILD)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(BUILD)/Successors.o : $(SUCCESSORS_SRCS) | $(BUILD)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BUILD):
+	mkdir $(BUILD)
 
 clean:
-	rm -f *.o
-	rm -f *.out
+	rm -rf build
 
 turnin:
 	tar -cvf PA0.tar *.cpp *.hpp
 	turnin PA0.tar
+
+.PHONY: all

@@ -26,10 +26,11 @@ int main(int argc, char * argv[]) {
     }
 
     std::list<int> successorList = successors(g, v);
-    std::cout << "Successors:" << std::endl;
+    std::cout << "Successors:";
     for(auto it = successorList.begin(); it != successorList.end(); it++){
       std::cout << " " << *it;
     }
+    std::cout << std::endl;
 
     return 0;
 }
